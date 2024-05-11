@@ -21,13 +21,6 @@ const DoughnutChart = () => {
                 '#0747b6',
                 '#0179FE',
                 '#BED9FF',
-
-               
-              
-                
-               
-               
-                
             ],
             hoverOffset: 4
         }]
