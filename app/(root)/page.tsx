@@ -3,7 +3,7 @@ import HeaderBox from './../../components/ui/HeaderBox';
 import TotalBalanceBox from '@/components/TotalBalanceBox';
 
 const Home = () => {
-  const loggedIn={firstName: 'Vanam Gangireddy'}
+  const loggedIn={firstName: 'Vanam ', lastName:'Gangireddy'}
   return (
    
       <section className="home">

@@ -7,7 +7,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 
-const DoughnutChart = () => {
+const DoughnutChart = ({accounts}:DoughnutChartProps) => {
     const data = {
         labels: [
             'Bank 1',
