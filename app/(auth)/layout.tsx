@@ -6,6 +6,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    
     <main className="flex justify-between font-inter">
       {children}
       <div className="auth-asset">
