@@ -23,6 +23,7 @@ import { Loader2 } from 'lucide-react'
 import { log } from 'console'
 import { useRouter } from 'next/navigation'
 import { signIn, signUp } from '@/lib/actions/user.actions'
+import PlaidLink from './PlaidLink'
 
 
 
@@ -32,6 +33,7 @@ const AuthForm = ({ type }: { type: string }) => {
     const router=useRouter()
     const formSchema = AuthFormSchema(type)
     // 1. Define your form.
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -50,7 +52,19 @@ const AuthForm = ({ type }: { type: string }) => {
              // sign up with appwrite and create plaid token
             
             if(type==='sign-up'){
-              const newUser =await signUp(data);
+                const userData={
+                    email:data.email!,        
+                    password:data.password!,         
+                    ssn:data.ssn!,
+                    dateOfBirth:data.dateOfBirth!,
+                    postalCode:data.postalCode!,
+                    state:data.state!,
+                    lastName:data.lastName!,
+                    firstName:data.firstName!,
+                    address1:data.address1!,
+                    city:data.city!
+                }
+              const newUser =await signUp(userData);
               setUser(newUser);
             }
             
@@ -98,10 +112,11 @@ const AuthForm = ({ type }: { type: string }) => {
                 </div>
             </header>
             {user ? (
-                <div className='flex flex-col gap-4'>
-                    {/* plaidLink */}
+                <div className='flex gap-4 flex-col'>
+                    <PlaidLink user={user!} variant="primary"/>
+                    
                 </div>
-            ) :
+             ) : 
                 <>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -163,7 +178,7 @@ const AuthForm = ({ type }: { type: string }) => {
                     </footer>
 
                 </>
-            }
+           }
         </section>
     )
 }
